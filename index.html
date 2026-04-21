@@ -1,11 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Do You Hate Me?</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DO YOU HATE ME</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 60px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      transform: scale(1.3);
+      margin-right: 8px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    /* Simple modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello</h1>
-  <p>Do you hate me?</p>
-  <p>YES or NO</p>
+
+  <div class="container">
+    <h1>Hey there... Erm...</h1>
+    <p>DO YOU HATE ME</p>
+
+    <form id="choiceForm">
+      <div class="options">
+        <label>
+          <input type="radio" name="choice" value="yes">
+          YES
+        </label>
+
+        <label>
+          <input type="radio" name="choice" value="no">
+          NO
+        </label>
+      </div>
+
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalText"></h2>
+      <button class="close-btn" onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("choiceForm");
+    const modal = document.getElementById("modal");
+    const modalText = document.getElementById("modalText");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const selected = document.querySelector('input[name="choice"]:checked');
+
+      if (!selected) {
+        modalText.innerText = "Please select YES or NO.";
+      } else if (selected.value === "yes") {
+        modalText.innerText = "You selected YES. Fuck off.";
+      } else {
+        modalText.innerText = "You selected NO. Jee, thanks x";
+      }
+
+      modal.style.display = "flex";
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+  </script>
+
 </body>
 </html>
